@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>br.com.rcc_dev.testes</groupId>
+  <artifactId>spring_1</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+
+  <name>spring_1</name>
+  <url>http://www.example.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.0.2.RELEASE</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
+  <dependencies>
+  
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-webflux</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-validation</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>2.9.4</version>
+    </dependency>
+    <!--
+    <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-yaml</artifactId>
+      <version>2.9.4</version>
+    </dependency>
+    -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-xml</artifactId>
+      <version>2.9.4</version>
+    </dependency>
+    
+    
+    
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.0</version>
+      <scope>provided</scope>
+    </dependency>
+  
+    <!--  =========================  Database ORM  ==============================  -->
+    <dependency>
+      <groupId>io.ebean</groupId>
+      <artifactId>ebean</artifactId>
+      <version>11.10.1</version>
+    </dependency>
+    <dependency>
+      <groupId>io.ebean</groupId>
+      <artifactId>ebean-querybean</artifactId>
+      <version>11.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>io.ebean</groupId>
+      <artifactId>querybean-generator</artifactId>
+      <version>11.1.1</version>
+      <scope>provided</scope>
+    </dependency>
+  
+    <!--  =========================  Logs   =====================================  -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+      <version>1.2.3</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.25</version>
+    </dependency>
+    
+    <!--  =========================  Tests  =====================================  -->
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>1.4.196</version>
+      <!-- <scope>test</scope> -->
+    </dependency>
+  
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+  </dependencies>
+  
+  <!-- ======================================================== -->
+  
+  <build>
+    <plugins>
+      
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      
+      <plugin>
+        <groupId>io.ebean</groupId>
+        <artifactId>ebean-maven-plugin</artifactId>
+        <version>11.11.1</version>
+        <executions>
+          <!-- enhance main classes -->
+          <execution>
+            <id>main</id>
+            <!-- <phase>process-classes</phase> -->
+            <!-- <phase>compile</phase> -->
+            <phase>process-classes</phase>
+            <configuration>
+              <transformArgs>debug=1</transformArgs>
+            </configuration>
+            <goals>
+              <goal>enhance</goal>
+            </goals>
+          </execution>
+
+          <!-- enhance test classes -->
+          <execution>
+            <id>test</id>
+            <phase>process-test-classes</phase>
+            <configuration>
+              <transformArgs>debug=1</transformArgs>
+            </configuration>
+            <goals>
+              <goal>testEnhance</goal>
+            </goals>
+          </execution>
+
+        </executions>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.6.0</version>
+        <executions>
+          <execution>
+            <goals> <goal>exec</goal> </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <executable>maven</executable>
+          <mainClass>br.com.rcc_dev.testes.App</mainClass>
+          <!-- optional -->
+          <workingDirectory>/tmp</workingDirectory>
+          <arguments>
+            <argument>-X</argument>
+            <argument>myproject:dist</argument>
+
+          </arguments>
+        </configuration>
+      </plugin>
+      
+    </plugins>
+  </build>
+</project>

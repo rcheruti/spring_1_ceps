@@ -1,0 +1,28 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "spring_1",
+                "projectName": "spring_1",
+                "workingDirectory": "c:\\Users\\1513 MXTI\\Documents\\GIT\\Estudos\\Java\\spring_1",
+                "args": [],
+                "vmargs": [],
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "spring_1",
+                "projectName": "spring_1",
+                "workingDirectory": "c:\\Users\\1513 MXTI\\Documents\\GIT\\Estudos\\Java\\spring_1",
+                "args": [],
+                "vmargs": [],
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}

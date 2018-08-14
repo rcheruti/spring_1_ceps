@@ -1,0 +1,7 @@
+
+# Pasta com os arquivos compilados (finais)
+/target/
+
+# Arquivos criados pelo H2 
+h2-create-all.sql
+h2-drop-all.sql
